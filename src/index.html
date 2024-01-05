@@ -1,1 +1,29 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network chat</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="userName">
+        <label for="nameInput">Username:</label>
+        <input type="text" id="nameInput" autofocus/>
+        <button onclick="setUsername()" id="setNameButton">Set Name</button>
+    </div>
+    <div id="messages"></div>
+    <div id="fileSharing">
+        <input type="file" id="fileInput"/>
+        <button onclick="sendFile()">Send File</button>
+    </div>
+    <div id="messageSharing">
+        <input type="text" id="messageInput" />
+        <button onclick="sendMessage()" id="sendMessageButton">Send</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
