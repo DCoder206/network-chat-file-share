@@ -33,8 +33,8 @@ io.on("connection",(socket) => {
         io.emit("chat message",`${bold(socket.username)}: ${msg}`);
     })
     socket.on("disconnect",() => {
-        io.emit("chat message",`${socket.username} left`);
-        console.log(`${bold(socket.username)} disconnected`);
+        io.emit("chat message",`${bold(socket.username)} left`);
+        console.log(`${socket.username} disconnected`);
     })
 })
 server.listen(port,() => {
