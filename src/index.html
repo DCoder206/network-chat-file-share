@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network chat</title>
+    <link rel="icon" href="./chat-logo.png">
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
     <div id="userName">
         <label for="nameInput">Username:</label>
-        <input type="text" id="nameInput" autofocus/>
+        <input type="text" id="nameInput" placeholder="Type your username here" autofocus/>
         <button onclick="setUsername()" id="setNameButton">Set Name</button>
     </div>
     <div id="messages"></div>
@@ -18,7 +19,7 @@
         <button onclick="sendFile()">Send File</button>
     </div>
     <div id="messageSharing">
-        <input type="text" id="messageInput" />
+        <input type="text" id="messageInput" placeholder="Message"/>
         <button onclick="sendMessage()" id="sendMessageButton">Send</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
