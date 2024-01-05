@@ -14,6 +14,9 @@ function IP() {
         }
     }
 }
+const bold = (str) => {
+    return `<strong>${str}</strong>`;
+}
 const app = express();
 const server = createServer(app);
 const io = new socketIO(server);
@@ -24,14 +27,14 @@ io.on("connection",(socket) => {
     socket.on("set username",(username) => {
         socket.username = username;
         console.log(`${username} joined`);
-        io.emit("chat message",`<strong>• ${username}</strong> joined`);
+        io.emit("chat message",`${bold("• " + username)} joined`);
     })
     socket.on("chat message",(msg) => {
-        io.emit("chat message",`<strong>${socket.username}:</strong> ${msg}`);
+        io.emit("chat message",`${bold(socket.username)}: ${msg}`);
     })
     socket.on("disconnect",() => {
         io.emit("chat message",`${socket.username} left`);
-        console.log(`${socket.username} disconnected`);
+        console.log(`${bold(socket.username)} disconnected`);
     })
 })
 server.listen(port,() => {
