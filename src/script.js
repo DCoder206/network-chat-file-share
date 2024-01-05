@@ -20,12 +20,28 @@ const socket = io();
 const capitalize = (str) => { return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase() }
 let userName = "";
 function setUsername() {
-    const nameInput = document.getElementById("nameInput").value;
-    socket.emit("set username",nameInput);
+    const nameInput = document.getElementById("nameInput");
+    userName = capitalize(nameInput.value);
+    nameInput.disabled = true;
+    socket.emit("set username",userName);
 }
 function sendMessage() {
-    const messageInput = document.getElementById("messageInput").value;
-    socket.emit("chat message",messageInput);
+    const messageInput = document.getElementById("messageInput");
+    if (messageInput.value.length > 0 && userName.length > 0) {
+        socket.emit("chat message",messageInput.value);
+        messageInput.value = "";
+    }
+    else {
+        let msg = "";
+        if (userName.length === 0) {
+            msg = "Username cannot be blank"
+        }
+        else if (message.length === 0) {
+            msg = "Message cannot be empty"
+        }
+        console.warn(msg);
+        alert(msg);
+    }
 }
 function showMessage(message) {
     const messagesDiv = document.getElementById("messages");
