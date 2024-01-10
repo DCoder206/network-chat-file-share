@@ -1,3 +1,28 @@
+const socket = io();
+const port = 9000;
+const fileInput = document.getElementById("fileInput");
+socket.on("file received",(fileInfo) => {
+    const messagesDiv = document.getElementById("messages");
+    const downloadLink = document.createElement("a");
+    downloadLink.href = fileInfo.url;
+    downloadLink.download = fileInfo.name;
+    downloadLink.textContent = `Download File: ${fileInfo.name}`;
+    messagesDiv.appendChild(downloadLink);
+})
+function sendFile() {
+    const file = fileInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const fileInfo = { name: file.name, content: event.target.result };
+            socket.emit("file shared", fileInfo);
+        };
+        reader.readAsDataURL(file);
+    }
+    else {
+        console.error("No file selected");
+    }
+}
 document.addEventListener("DOMContentLoaded", () => {
     const nameInput = document.querySelector("#nameInput");
     const setNameButton = document.querySelector("#setNameButton");
@@ -6,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setNameButton.click();
         }
     });
-})
+});
 document.addEventListener("DOMContentLoaded", () => {
     const messageInput = document.querySelector("#messageInput");
     const sendMessageButton = document.querySelector("#sendMessageButton");
@@ -16,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-const socket = io();
 const capitalize = (str) => { return str.substring(0,1).toUpperCase() + str.substring(1).toLowerCase() }
 let userName = "";
 function setUsername() {
