@@ -8,18 +8,18 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div id="userName">
+    <div id="userName" class="typeBox">
         <label for="nameInput">Username:</label>
-        <input type="text" id="nameInput" placeholder="Type your username here" autofocus/>
+        <input type="text" id="nameInput" placeholder="Type your username here" class="typeBox" autofocus/>
         <button onclick="setUsername()" id="setNameButton">Set Name</button>
     </div>
     <div id="messages"></div>
     <div id="fileSharing">
         <input type="file" id="fileInput"/>
-        <button onclick="sendFile()">Send File</button>
+        <button onclick="sendFile()" id="sendFileButton">Send File</button>
     </div>
-    <div id="messageSharing">
-        <input type="text" id="messageInput" placeholder="Message"/>
+    <div id="messageSharing" class="typeBox">
+        <input type="text" id="messageInput" placeholder="Message" class="typeBox"/>
         <button onclick="sendMessage()" id="sendMessageButton">Send</button>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
